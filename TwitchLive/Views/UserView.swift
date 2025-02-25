@@ -9,14 +9,9 @@ import SwiftUI
 
 struct UserView: View {
   var body: some View {
-    VStack {
-      Circle()
-        .stroke(style: StrokeStyle(lineWidth: 1))
-        .size(width: 250, height: 250)
-        .offset(x: 75, y: 125)
-      Text("Hi, Spraynard!")
-    }
-    
+    CircleImage()
+      .offset(y: 20)
+    Text("Hi, Spraynard!")
     Spacer()
     
     Button(action: {
