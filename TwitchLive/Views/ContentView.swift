@@ -17,23 +17,12 @@ struct ContentView: View {
         .font(.largeTitle)
         .fontWeight(.black)
         .padding(.bottom, 42)
-      HStack {
-        Text("Username")
-        TextField(
-          "Username",
-          text: $username
-        )
-      }
-      .padding()
       
-      HStack {
-        Text("Password")
-        TextField(
-          "Username",
-          text: $password
-        )
-      }
-      .padding()
+      VStack(spacing: 16) {
+        InputFieldView(data: $username, title: "Username")
+        
+        InputFieldView(data: $password, title: "Password")
+      }.padding(.bottom, 16)
       
       Button (action: {
         print("You pressed me!")
@@ -42,12 +31,12 @@ struct ContentView: View {
           .fontWeight(.heavy)
           .font(.title3)
           .frame(maxWidth: .infinity)
+          .padding()
           .foregroundStyle(.white)
           .background(LinearGradient(gradient: Gradient(colors: [.pink, .blue]), startPoint: .leading, endPoint: .trailing))
           .cornerRadius(40)
         
       })
-      .padding()
       
       HStack {
         Spacer()
@@ -57,8 +46,8 @@ struct ContentView: View {
           .underline()
       }
       .padding(.top, 16)
-      
     }
+    .padding()
   }
 }
 
