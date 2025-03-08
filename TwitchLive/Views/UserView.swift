@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct UserView: View {
+  var user: TwitchUserModel?
+  
   var body: some View {
     CircleImage()
       .offset(y: 20)
-    Text("Hi, Spraynard!")
+    
+    if let user = user {
+      Text("Hi, \(user.display_name)!")
+      Text(user.id)
+      Text(user.login)
+    }
+    
     Spacer()
     
     Button(action: {
