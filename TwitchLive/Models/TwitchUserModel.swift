@@ -12,6 +12,7 @@ struct TwitchUserModel: Codable {
   let login: String
   let display_name: String
   let profile_image_url: String
+  let created_at: String
 }
 
 struct TwitchAPIResponse: Codable {

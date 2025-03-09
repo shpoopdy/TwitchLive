@@ -17,16 +17,10 @@ struct UserView: View {
     if let user = user {
       Text("Hi, \(user.display_name)!")
       Text(user.id)
-      Text(user.login)
+      Text("Account created: \(user.created_at)")
     }
     
     Spacer()
-    
-    Button(action: {
-      print("Super push!")
-    }, label: {
-      Text("Following")
-    })
   }
 }
 

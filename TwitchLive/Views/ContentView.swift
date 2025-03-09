@@ -31,7 +31,6 @@ struct ContentView: View {
               if let user = user {
                 self.userInfo = user
                 self.navigateToUserView = true
-                print("User ID: \(user.id), Display Name: \(user.display_name), Login: \(user.login), Profile Image URL: \(user.profile_image_url)")
               } else {
                 print("No user found.")
               }
