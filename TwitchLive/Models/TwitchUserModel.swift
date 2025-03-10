@@ -31,7 +31,7 @@ class TwitchAPI {
     
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
-    request.addValue("Your Client-ID", forHTTPHeaderField: "Client-ID")
+    request.addValue("Your Client-Id", forHTTPHeaderField: "Client-ID")
     request.addValue("Bearer Authorization", forHTTPHeaderField: "Authorization")
     
     let (data, response) = try await URLSession.shared.data(for: request)
