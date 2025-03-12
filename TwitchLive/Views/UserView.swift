@@ -12,16 +12,23 @@ struct UserView: View {
   
   var body: some View {
     
-    if let user = user {
-      CircleImage(userUrl: user.profile_image_url)
-        .offset(y: 20)
-      
-      Text("Hi, \(user.display_name)!")
-      Text(user.id)
-      Text("Account created: \(user.created_at)")
+    ZStack {
+      AppColors.primary.ignoresSafeArea()
+      VStack {
+        if let user = user {
+          CircleImage(userUrl: user.profile_image_url)
+            .offset(y: 20)
+          
+          Text("Hi, \(user.display_name)!")
+            .font(.title)
+          Text(user.id)
+          Text("Account created: \(user.created_at)")
+            .font(.title2)
+        }
+        Spacer()
+      }
+      .foregroundStyle(.white)
     }
-    
-    Spacer()
   }
 }
 
