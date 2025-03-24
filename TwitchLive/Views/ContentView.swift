@@ -14,48 +14,56 @@ struct ContentView: View {
   
   var body: some View {
     NavigationStack {
-      VStack {
-        Text("Welcome!")
-          .font(.largeTitle)
-          .fontWeight(.black)
-          .padding(.bottom, 42)
+      ZStack {
+        AppColors.primary.ignoresSafeArea(edges: .all)
         
-        VStack(spacing: 16) {
-          InputFieldView(data: $username, title: "Username")
-        }.padding(.bottom, 16)
-        
-       Button (action: {
-          Task {
-            do {
-              let user = try await TwitchAPI.shared.fetchUserInfo(username: username)
-              if let user = user {
-                self.userInfo = user
-                self.navigateToUserView = true
-              } else {
-                print("No user found.")
-              }
-            } catch {
-              print("Error fetching user info: \(error.localizedDescription)")
-            }
-          }
-        }, label: {
-          Text("Sign In")
-            .fontWeight(.heavy)
-            .font(.title3)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .foregroundStyle(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                       startPoint: .leading, endPoint: .trailing))
-            .cornerRadius(40)
+        VStack {
+          Text("Welcome!")
+            .font(.largeTitle)
+            .fontWeight(.black)
+            .padding(.bottom, 42)
+            .foregroundStyle(AppColors.secondary)
           
-        })
-       .navigationDestination(isPresented: $navigateToUserView) {
-         UserView(user: userInfo)
-       }
+          VStack(spacing: 16) {
+            InputFieldView(data: $username, title: "Username")
+          }.padding(.bottom, 16)
+          
+          Button (action: {
+            Task {
+              do {
+                let user = try await TwitchAPI.shared.fetchUserInfo(username: username)
+                if let user = user {
+                  self.userInfo = user
+                  self.navigateToUserView = true
+                } else {
+                  print("No user found.")
+                }
+              } catch {
+                print("Error fetching user info: \(error.localizedDescription)")
+              }
+            }
+          }, label: {
+            Text("Sign In")
+              .fontWeight(.heavy)
+              .font(.title3)
+              .frame(maxWidth: .infinity)
+              .padding()
+              .foregroundStyle(.white)
+              .background(LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+                                         startPoint: .leading, endPoint: .trailing))
+              .cornerRadius(40)
+            
+          })
+          .navigationDestination(isPresented: $navigateToUserView) {
+            UserView(user: userInfo)
+          }
+        }
+        .padding()
       }
-      .padding()
+      
+      
     }
+    
   }
 }
 

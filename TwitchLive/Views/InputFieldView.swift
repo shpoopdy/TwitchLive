@@ -19,7 +19,7 @@ struct InputFieldView: View {
         // This overlay creates the border around our field
           .overlay(
             RoundedRectangle(cornerSize: CGSize(width: 4, height: 4))
-              .stroke(Color.gray, lineWidth: 1)
+              .stroke(AppColors.secondary, lineWidth: 1)
           )
         
         // This HStack allows me to push the text all the way to the left, then style it to appear
@@ -28,10 +28,10 @@ struct InputFieldView: View {
           Text(title ?? "Input")
             .font(.headline)
             .fontWeight(.thin)
-            .foregroundStyle(Color.gray)
+            .foregroundStyle(AppColors.secondary)
             .multilineTextAlignment(.leading)
             .padding(4)
-            .background(.white)
+            .background(AppColors.primary)
           Spacer()
         }
         .padding(.leading, 8)
