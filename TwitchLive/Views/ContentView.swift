@@ -49,7 +49,7 @@ struct ContentView: View {
               .frame(maxWidth: .infinity)
               .padding()
               .foregroundStyle(.white)
-              .background(LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+              .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.secondary]),
                                          startPoint: .leading, endPoint: .trailing))
               .cornerRadius(40)
             
