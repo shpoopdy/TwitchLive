@@ -26,7 +26,9 @@ struct ContentView: View {
           
           VStack(spacing: 16) {
             InputFieldView(data: $username, title: "Username")
-          }.padding(.bottom, 16)
+          }
+            .padding(.bottom, 16)
+            .foregroundStyle(.white)
           
           Button (action: {
             Task {
@@ -43,7 +45,7 @@ struct ContentView: View {
               }
             }
           }, label: {
-            Text("Sign In")
+            Text("Search")
               .fontWeight(.heavy)
               .font(.title3)
               .frame(maxWidth: .infinity)

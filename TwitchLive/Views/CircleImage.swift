@@ -23,7 +23,7 @@ struct CircleImage: View {
         .overlay {
           Circle().stroke(.black, lineWidth: 4)
         }
-        .scaleEffect(0.65)
+        .scaleEffect(0.85)
     }
   }
 }

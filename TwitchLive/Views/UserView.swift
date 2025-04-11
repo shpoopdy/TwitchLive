@@ -13,24 +13,69 @@ struct UserView: View {
   var body: some View {
     
     ZStack {
-      AppColors.primary.ignoresSafeArea()
+      AppColors.accent.ignoresSafeArea()
+      
       VStack {
+        Spacer()
         if let user = user {
           CircleImage(userUrl: user.profile_image_url)
-            .offset(y: 20)
+            .offset(y: -5)
           
           Text("Hi, \(user.display_name)!")
             .font(.title)
-          Text(user.id)
-          Text("Account created: \(user.created_at)")
-            .font(.title2)
+          Spacer()
+          VStack(alignment: .leading) {
+            HStack {
+              Text("Display Name: ")
+                .font(.title2)
+              Spacer()
+              Text(user.display_name)
+            }
+            HStack {
+              Text("Account created: ")
+                .font(.title2)
+              Spacer()
+              Text(formattedDate(from: user.created_at))
+              
+            }
+          }
+          .padding()
+          Spacer()
         }
-        Spacer()
       }
       .foregroundStyle(.white)
+      .background(Rectangle()
+        .foregroundStyle(AppColors.primary)
+        .cornerRadius(15)
+        .shadow(radius: 7))
+      .aspectRatio(contentMode: .fit)
+      .padding()
     }
   }
 }
+
+func formattedDate(from isoDate: String) -> String {
+    let isoFormatter = ISO8601DateFormatter()
+    isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+    if let date = isoFormatter.date(from: isoDate) {
+        let displayFormatter = DateFormatter()
+        displayFormatter.dateStyle = .long
+        displayFormatter.timeStyle = .none
+        return displayFormatter.string(from: date)
+    } else {
+        // Try again without fractional seconds
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        if let fallbackDate = isoFormatter.date(from: isoDate) {
+            let displayFormatter = DateFormatter()
+            displayFormatter.dateStyle = .long
+            displayFormatter.timeStyle = .none
+            return displayFormatter.string(from: fallbackDate)
+        }
+        return "Unknown"
+    }
+}
+
 
 #Preview {
   UserView(user: TwitchUserModel(

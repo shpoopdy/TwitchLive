@@ -21,6 +21,7 @@ struct InputFieldView: View {
             RoundedRectangle(cornerSize: CGSize(width: 4, height: 4))
               .stroke(AppColors.secondary, lineWidth: 1)
           )
+          .textInputAutocapitalization(.never)
         
         // This HStack allows me to push the text all the way to the left, then style it to appear
         // as though it is sitting on top of the rectangle, style points.
